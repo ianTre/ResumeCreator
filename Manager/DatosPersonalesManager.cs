@@ -4,16 +4,32 @@ namespace ResumeCreator.Manager
 {
     public class DatosPersonalesManager
     {
+
+
+        List<DatosPersonales> lista;
+
+        public DatosPersonalesManager() {
+            lista = new List<DatosPersonales>();
+            PopularDatos();
+        }
         public List<DatosPersonales> ObtenerDatosPersonales()
         {
             return ObtenerDatosBD();
         }
 
+        internal void GuardarDatos(DatosPersonales datosPersonales)
+        {
+            lista.Add(datosPersonales);
+        }
+
         private List<DatosPersonales> ObtenerDatosBD()
         {
-            List<DatosPersonales> lista = new List<DatosPersonales>();
+            return lista;
+        }
 
-            lista.Add(new DatosPersonales() 
+        private void PopularDatos()
+        {
+            lista.Add(new DatosPersonales()
             {
                 Id = 1,
                 Documento = "38700240",
@@ -30,10 +46,6 @@ namespace ResumeCreator.Manager
             usuario2.NombreUsuario = "Mauro Ku";
             usuario2.PerfilPropio = false;
             lista.Add(usuario2);
-
-            
-
-            return lista;
         }
     }
 }
