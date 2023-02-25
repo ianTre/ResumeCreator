@@ -1,0 +1,39 @@
+﻿@model ResumeCreator.Models.DatosPersonales
+
+@{
+    ViewData["Title"] = "Nuevo";
+}
+
+<h1>Nuevo</h1>
+
+<h4>DatosPersonales</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Nuevo","DatosPersonales"))
+        {
+            <div class="form-group">
+                <label for="NombreUsuario"> Nombre de Usuario </label>
+                <input type="text" name="NombreUsuario" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Documento" class="control-label"></label>
+                <input asp-for="Documento" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        }
+        
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Atras","Listado","DatosPersonales")
+</div>
+
+

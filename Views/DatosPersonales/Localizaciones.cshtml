@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ResumeCreator.Models.Pais>
+
+    <h1>Bienvenido</h1>
+    <h2>Seleccione su ubicacion</h2>
+    <p>Seleccionar del listado de paises , su pais de origen y luego la provincia</p>
+
+    <select> PAISES
+        <option>Seleccionar Pais</option>
+           @foreach (Pais item in Model)
+    {
+        <option id="@item.Id"> @item.Nombre </option>
+    }
+    </select>
+
+    <select> PROVINCIAS
+        <option>Vacio</option>
+        @foreach(Pais item in Model)
+    {
+        foreach (Provincia provincia in item.provincias)
+        {
+            <option class="@item.Nombre"> @provincia.Nombre </option>
+        }
+    }
+    </select>
+
+
+
+
+@*@foreach (var item in Model) {*@
