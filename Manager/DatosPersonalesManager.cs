@@ -35,7 +35,7 @@ namespace ResumeCreator.Manager
                 Documento = "38700240",
                 Email = "ianntrejo96@gmail.com",
                 NombreUsuario = "IanTre",
-                PerfilPropio = true
+                IsMainProfile = true
             });
 
             DatosPersonales usuario2 = new DatosPersonales();
@@ -44,7 +44,7 @@ namespace ResumeCreator.Manager
             usuario2.Documento = "28500250";
             usuario2.Email = "maurokucich@gmail.com";
             usuario2.NombreUsuario = "Mauro Ku";
-            usuario2.PerfilPropio = false;
+            usuario2.IsMainProfile = false;
             lista.Add(usuario2);
         }
     }

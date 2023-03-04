@@ -7,6 +7,8 @@
         public string Email { get; set; }
         public string Documento { get; set; }
         public string Direccion { get; set; }
-        public bool PerfilPropio { get; set; }
+        public bool IsMainProfile { get; set; }
+        public List<DatosPersonales> RelatedProfiles { get; set; }
+
     }
 }
