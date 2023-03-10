@@ -1,4 +1,4 @@
-﻿@model ResumeCreator.Models.DatosPersonales
+﻿@model ResumeCreator.Models.ProfileData
 
 @{
     ViewData["Title"] = "Nuevo";
@@ -14,8 +14,8 @@
         {
             <div class="form-group">
                 <label for="NombreUsuario"> Nombre de Usuario </label>
-                <input type="text" name="NombreUsuario" value="@Model.NombreUsuario" class="form-control" />
-                @Html.ValidationMessageFor(x => x.NombreUsuario)
+                <input type="text" name="NombreUsuario" value="@Model.UserName" class="form-control" />
+                @Html.ValidationMessageFor(x => x.UserName)
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -23,9 +23,9 @@
                 @Html.ValidationMessageFor(x => x.Email)
             </div>
             <div class="form-group">
-                <label asp-for="Documento" class="control-label"></label>
-                <input asp-for="Documento" class="form-control" />
-                @Html.ValidationMessageFor(x => x.Documento)
+                <label asp-for="DNI" class="control-label"></label>
+                <input asp-for="DNI" class="form-control" />
+                @Html.ValidationMessageFor(x => x.DNI)
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

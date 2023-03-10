@@ -2,48 +2,48 @@
 
 namespace ResumeCreator.Manager
 {
-    public class DatosPersonalesManager
+    public class ProfileDataManager
     {
 
 
-        List<DatosPersonales> lista;
+        List<ProfileData> lista;
 
-        public DatosPersonalesManager() {
-            lista = new List<DatosPersonales>();
+        public ProfileDataManager() {
+            lista = new List<ProfileData>();
             PopularDatos();
         }
-        public List<DatosPersonales> ObtenerDatosPersonales()
+        public List<ProfileData> GetProfileData()
         {
             return ObtenerDatosBD();
         }
 
-        internal void GuardarDatos(DatosPersonales datosPersonales)
+        internal void GuardarDatos(ProfileData datosPersonales)
         {
             lista.Add(datosPersonales);
         }
 
-        private List<DatosPersonales> ObtenerDatosBD()
+        private List<ProfileData> ObtenerDatosBD()
         {
             return lista;
         }
 
         private void PopularDatos()
         {
-            lista.Add(new DatosPersonales()
+            lista.Add(new ProfileData()
             {
                 Id = 1,
-                Documento = "38700240",
+                DNI = "38700240",
                 Email = "ianntrejo96@gmail.com",
-                NombreUsuario = "IanTre",
+                UserName = "IanTre",
                 IsMainProfile = true
             });
 
-            DatosPersonales usuario2 = new DatosPersonales();
+            ProfileData usuario2 = new ProfileData();
 
             usuario2.Id = 2;
-            usuario2.Documento = "28500250";
+            usuario2.DNI = "28500250";
             usuario2.Email = "maurokucich@gmail.com";
-            usuario2.NombreUsuario = "Mauro Ku";
+            usuario2.UserName = "Mauro Ku";
             usuario2.IsMainProfile = false;
             lista.Add(usuario2);
         }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ResumeCreator.Models.Pais>
+﻿@model IEnumerable<ResumeCreator.Models.Country>
 
     <h1>Bienvenido</h1>
     <h2>Seleccione su ubicacion</h2>
@@ -6,7 +6,7 @@
 
     <select> PAISES
         <option>Seleccionar Pais</option>
-           @foreach (Pais item in Model)
+           @foreach (Country item in Model)
     {
         <option id="@item.Id"> @item.Nombre </option>
     }
@@ -14,7 +14,7 @@
 
     <select> PROVINCIAS
         <option>Vacio</option>
-        @foreach(Pais item in Model)
+        @foreach(Country item in Model)
     {
         foreach (Provincia provincia in item.provincias)
         {

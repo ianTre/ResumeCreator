@@ -5,11 +5,11 @@ namespace ResumeCreator.Manager
     /// <summary>
     /// Obtiene los datos de la BASE De DATOS para Localizaciones ( PAIS y PROVINCIA) 
     /// </summary>
-    public class LocalizacionManager
+    public class LocationManager
     {
-        public List<Pais> ObtenerListadoLocalizaciones()
+        public List<Country> GetLocationList()
         {
-            List<Pais> paises = ObtenerPaises();
+            List<Country> paises = ObtenerPaises();
             foreach (var pais in paises)
             {
                 ObtenerProvinciasPorPais(pais);
@@ -17,7 +17,7 @@ namespace ResumeCreator.Manager
             return paises;
         }
 
-        private void ObtenerProvinciasPorPais(Pais pais)
+        private void ObtenerProvinciasPorPais(Country pais)
         {
             if ( pais.Id == 1 )
             {
@@ -39,13 +39,13 @@ namespace ResumeCreator.Manager
             }
         }
 
-        private List<Pais> ObtenerPaises()
+        private List<Country> ObtenerPaises()
         {
-            List<Pais> listaPaises = new List<Pais>();
-            listaPaises.Add(new Pais() { Id = 1 , Nombre = "Argentina"});
-            listaPaises.Add(new Pais() { Id = 2, Nombre = "Brasil" });
-            listaPaises.Add(new Pais() { Id = 3, Nombre = "Uruguay" });
-            listaPaises.Add(new Pais() { Id = 4, Nombre = "Paraguay" });
+            List<Country> listaPaises = new List<Country>();
+            listaPaises.Add(new Country() { Id = 1 , Nombre = "Argentina"});
+            listaPaises.Add(new Country() { Id = 2, Nombre = "Brasil" });
+            listaPaises.Add(new Country() { Id = 3, Nombre = "Uruguay" });
+            listaPaises.Add(new Country() { Id = 4, Nombre = "Paraguay" });
             return  listaPaises.OrderBy(x => x.Nombre).ToList();
         }
     }

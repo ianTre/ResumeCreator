@@ -8,5 +8,6 @@ create table ProfileData
 		UserName varchar(200) ,
 		Email varchar(200) ,
 		DNI varchar(200),
+		UserAddress varchar(200),
 		IsMainProfile bit
 	)

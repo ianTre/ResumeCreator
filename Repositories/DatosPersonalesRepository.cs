@@ -4,12 +4,12 @@ namespace ResumeCreator.Repositories
 {
     public class DatosPersonalesRepository : Repository // VER MÉTODOS ABSTRACTOS!!!!!!!!!!
     {
-        public List<DatosPersonales> GetAll()
-        { 
-                 
+        public List<ProfileData> GetAll()
+        {
+            return null; 
         }
 
-        public void Save( DatosPersonales entry) 
+        public void Save( ProfileData entry) 
         {
 
         }
