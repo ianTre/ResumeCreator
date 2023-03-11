@@ -7,43 +7,40 @@ using ResumeCreator.Models;
 
 namespace ResumeCreator.Controllers
 {
-    public class ProfileDataController : Controller
+
+    [Route("/DatosPersonales")]
+    public class ProfileDataController : Controller //Los controllers tienen 2 responsabilidades :
+                                                    //Setear info necesaria para mostrar una view. 
+                                                    //Recibir info que envia una View
     {
-        private ProfileDataManager manager;
-        private LocationManager locationManager;
+        private ProfileDataManager _Manager;
 
         public ProfileDataController()
         {
-            manager = new ProfileDataManager();
-            locationManager = new LocationManager();
-        }
-
-
-        [HttpGet]
-        public IActionResult Localizaciones()
-        {
-            List<Country> countries = locationManager.GetLocationList();
-            return View(countries);
+            _Manager = new ProfileDataManager();
         }
 
         [HttpGet]
+        [Route("/")]
+        [Route("List")]
         public IActionResult ProfileDataList()
         {
-            //manager = new DatosPersonalesManager();
-            var PDList = manager.GetProfileData();
+            var PDList = _Manager.GetProfileData();
             return View(PDList);
         }
 
         //Devuelve una vista para Crear nuevo Perfil
         [HttpGet]
+        [Route("New")]
         public IActionResult New()
         {
             ProfileData model = new ProfileData();
-            return View(model);
+            return View("Nuevo",model);
         }
 
         //Recibe datos para crear nuevo Perfil y guardalo en la Base de datos
         [HttpPost]
+        [Route("New")]
         public IActionResult New(ProfileData ProfileData)
         {
             bool valid = true;
@@ -72,7 +69,7 @@ namespace ResumeCreator.Controllers
 
             //IF todo bien       
 
-            manager.GuardarDatos(ProfileData);
+            _Manager.Save(ProfileData);
 
             //Retornar a la vista de listado
             return RedirectToAction("UserList");

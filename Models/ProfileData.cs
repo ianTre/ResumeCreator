@@ -8,6 +8,7 @@
         public string DNI { get; set; }
         public string UserAddress { get; set; }
         public bool IsMainProfile { get; set; }
+        public int DependentId { get; set; }
         public List<ProfileData> RelatedProfiles { get; set; }
 
     }

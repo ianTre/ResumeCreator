@@ -1,51 +1,26 @@
 ﻿using ResumeCreator.Models;
+using ResumeCreator.Repositories;
 
 namespace ResumeCreator.Manager
 {
     public class ProfileDataManager
     {
 
-
-        List<ProfileData> lista;
+        private ProfileDataRepository _repository;
+        
 
         public ProfileDataManager() {
-            lista = new List<ProfileData>();
-            PopularDatos();
+            _repository = new ProfileDataRepository();
         }
         public List<ProfileData> GetProfileData()
         {
-            return ObtenerDatosBD();
+            return _repository.GetAll();
         }
 
-        internal void GuardarDatos(ProfileData datosPersonales)
+        public void Save(ProfileData model)
         {
-            lista.Add(datosPersonales);
+            _repository.Save(model);
         }
-
-        private List<ProfileData> ObtenerDatosBD()
-        {
-            return lista;
-        }
-
-        private void PopularDatos()
-        {
-            lista.Add(new ProfileData()
-            {
-                Id = 1,
-                DNI = "38700240",
-                Email = "ianntrejo96@gmail.com",
-                UserName = "IanTre",
-                IsMainProfile = true
-            });
-
-            ProfileData usuario2 = new ProfileData();
-
-            usuario2.Id = 2;
-            usuario2.DNI = "28500250";
-            usuario2.Email = "maurokucich@gmail.com";
-            usuario2.UserName = "Mauro Ku";
-            usuario2.IsMainProfile = false;
-            lista.Add(usuario2);
-        }
+        
     }
 }
