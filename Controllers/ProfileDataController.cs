@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.CodeAnalysis.Editing;
 using ResumeCreator.Manager;
 using ResumeCreator.Models;
+using System;
 
 namespace ResumeCreator.Controllers
 {
@@ -22,10 +23,10 @@ namespace ResumeCreator.Controllers
 
         [HttpGet]
         [Route("/")]
-        [Route("List")]
+        [Route("List")] //TODO : add UserId from the user logged . We should NOT see all the user , only the logged account and the secondary accounts created by them. 
         public IActionResult ProfileDataList()
         {
-            var PDList = _Manager.GetProfileData();
+            var PDList = _Manager.GetAllProfileData();
             return View(PDList);
         }
 
@@ -41,38 +42,39 @@ namespace ResumeCreator.Controllers
         //Recibe datos para crear nuevo Perfil y guardalo en la Base de datos
         [HttpPost]
         [Route("New")]
-        public IActionResult New(ProfileData ProfileData)
+        public IActionResult New(ProfileData profileData)
         {
             bool valid = true;
+            profileData.IsMainProfile = false; //In this Controller we are creating secondary accounts or profiles. 
             //Validar datos recibidos
-            if (string.IsNullOrEmpty(ProfileData.UserName))
+            if (string.IsNullOrEmpty(profileData.UserName))
             {
                 ModelState.AddModelError("NombreUsuario", "El nombre de usuario no es correcto");
 
             }
 
-            if (!IsValidMail(ProfileData.Email))
+            if (!IsValidMail(profileData.Email))
             {
                 ModelState.AddModelError("Email", "El mail ingresado no corresponde al formato de mail");
                 valid = false;
             }
 
-            if (!IsDniValid(ProfileData.DNI))
+            if (!IsDniValid(profileData.DNI))
             {
                 ModelState.AddModelError("Documento", "El numero de docuemento no es correcto");
                 valid = false;
             }
             if (!valid)
             {
-                return View(ProfileData);
+                return View("Nuevo",profileData);
             }
 
             //IF todo bien       
 
-            _Manager.Save(ProfileData);
+            _Manager.Save(profileData);
 
             //Retornar a la vista de listado
-            return RedirectToAction("UserList");
+            return RedirectToAction("ProfileDataList");
         }
 
         private bool IsDniValid(string dni)
@@ -81,6 +83,7 @@ namespace ResumeCreator.Controllers
             if (string.IsNullOrEmpty(dni))
             {
                 valid = false;
+                return valid;
             }
 
             int dniNumber;
@@ -110,6 +113,54 @@ namespace ResumeCreator.Controllers
             return valid;
         }
 
+
+        [HttpGet]
+        [Route("Edit")]
+        public IActionResult Edit(ProfileData profileData)
+        {
+            ModelState.Clear(); //Clear Model State errors 
+            ProfileData model = _Manager.Get(profileData.Id);
+            return View("Edit", model);
+        }
+
+
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult Update(ProfileData profileData)
+        {
+            bool valid = true;
+            if (string.IsNullOrEmpty(profileData.UserName))
+            {
+                ModelState.AddModelError("NombreUsuario", "El nombre de usuario no es correcto");
+
+            }
+
+            if (!IsValidMail(profileData.Email))
+            {
+                ModelState.AddModelError("Email", "El mail ingresado no corresponde al formato de mail");
+                valid = false;
+            }
+
+            if (!IsDniValid(profileData.DNI))
+            {
+                ModelState.AddModelError("Documento", "El numero de docuemento no es correcto");
+                valid = false;
+            }
+
+            if (!valid)
+                return RedirectToAction("Edit",profileData.Id);
+
+            _Manager.Update(profileData); 
+            return RedirectToAction("ProfileDataList");
+
+        }
+
+        [HttpGet]
+        public IActionResult Deletear(int id)
+        {
+            _Manager.Delete(id);
+            return RedirectToAction("ProfileDataList");
+        }
 
     }
 }

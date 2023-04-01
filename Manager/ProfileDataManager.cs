@@ -12,7 +12,7 @@ namespace ResumeCreator.Manager
         public ProfileDataManager() {
             _repository = new ProfileDataRepository();
         }
-        public List<ProfileData> GetProfileData()
+        public List<ProfileData> GetAllProfileData()
         {
             return _repository.GetAll();
         }
@@ -21,6 +21,22 @@ namespace ResumeCreator.Manager
         {
             _repository.Save(model);
         }
-        
+
+        public ProfileData Get(int userId)
+        {
+            return _repository.Get(userId);
+        }
+
+        internal void Update(ProfileData profileData)
+        {
+            _repository.Update(profileData);
+            return;
+        }
+
+        internal void Delete(int id)
+        {
+            _repository.Delete(id);
+            return;
+        }
     }
 }
