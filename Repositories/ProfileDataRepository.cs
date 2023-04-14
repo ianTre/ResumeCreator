@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Net;
+using System.Drawing.Drawing2D;
 
 namespace ResumeCreator.Repositories
 {
@@ -30,6 +31,10 @@ namespace ResumeCreator.Repositories
                 dataItem.DNI = Convert.ToString(reader.GetValue(4));
                 dataItem.UserAddress = Convert.ToString(reader.GetValue(5));
                 dataItem.IsMainProfile = Convert.ToBoolean(reader.GetValue(6));
+
+                var ageReaderData = reader.GetValue(7);
+                dataItem.Age = ageReaderData == DBNull.Value ? 0 : Convert.ToInt32(ageReaderData);
+
 
                 list.Add(dataItem);
 
@@ -65,7 +70,9 @@ namespace ResumeCreator.Repositories
                 dataItem.UserAddress = Convert.ToString(reader.GetValue(5));
                 dataItem.IsMainProfile = Convert.ToBoolean(reader.GetValue(6));
 
-                
+                var ageReaderData = reader.GetValue(7);
+                dataItem.Age = ageReaderData == DBNull.Value ? 0 : Convert.ToInt32(ageReaderData);
+
                 isStillData = reader.Read();
             }
 
@@ -86,7 +93,8 @@ namespace ResumeCreator.Repositories
             command.Parameters.Add("@DNI", SqlDbType.VarChar).Value = entry.DNI == null ? DBNull.Value : entry.DNI;
             command.Parameters.Add("@UserAddress", SqlDbType.VarChar).Value = entry.UserAddress == null ? DBNull.Value : entry.UserAddress ; 
             command.Parameters.Add("@IsMainProfile", SqlDbType.Bit).Value = entry.IsMainProfile;
-            
+            command.Parameters.Add("@Age", SqlDbType.Int).Value = entry.Age == null ? 0 : entry.Age;
+
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
@@ -105,6 +113,7 @@ namespace ResumeCreator.Repositories
             command.Parameters.Add("@DNI", SqlDbType.VarChar).Value = entry.DNI == null ? DBNull.Value : entry.DNI;
             command.Parameters.Add("@UserAddress", SqlDbType.VarChar).Value = entry.UserAddress == null ? DBNull.Value : entry.UserAddress;
             command.Parameters.Add("@IsMainProfile", SqlDbType.Bit).Value = entry.IsMainProfile;
+            command.Parameters.Add("@Age", SqlDbType.Bit).Value = entry.Age;
 
             connection.Open();
             command.ExecuteNonQuery();

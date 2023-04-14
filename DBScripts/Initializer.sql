@@ -127,3 +127,60 @@ BEGIN
 END
 GO
 
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[ProfileDataSave]    Script Date: 14/4/2023 19:45:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[ProfileDataSave]
+	(
+        @DependentId int,
+        @UserName varchar(100),
+        @Email varchar(100),
+        @DNI varchar(100),
+        @UserAddress varchar(100),
+        @IsMainProfile bit,
+		@Age int
+	)
+AS
+BEGIN
+	
+	INSERT INTO ProfileData VALUES ( @DependentId , @UserName , @Email , @DNI , @UserAddress , @IsMainProfile , @Age)
+	
+END
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[ProfileDataUpdate]    Script Date: 14/4/2023 19:46:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Itrejo002
+-- Create date: 10-3-2023
+-- Description:	Update a Profile data entry
+-- =============================================
+ALTER PROCEDURE [dbo].[ProfileDataUpdate]
+	(
+		@UserId int,
+        @DependentId int,
+        @UserName varchar(100),
+        @Email varchar(100),
+        @DNI varchar(100),
+        @UserAddress varchar(100),
+        @IsMainProfile bit,
+		@Age int
+	)
+AS
+BEGIN
+	
+	UPDATE ProfileData SET DependentId = @DependentId , UserName = @UserName ,Email = @Email , dni = @DNI , UserAddress = @UserAddress , IsMainProfile = @IsMainProfile  , Age = @Age
+	where Id = @UserId
+	
+END

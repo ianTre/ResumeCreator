@@ -64,6 +64,13 @@ namespace ResumeCreator.Controllers
                 ModelState.AddModelError("Documento", "El numero de docuemento no es correcto");
                 valid = false;
             }
+
+            if(profileData.Age <= 0 || profileData.Age>= 100)
+            {
+                ModelState.AddModelError("Edad", "La edad debe ser un valor numerico mayor a 0 y menor a 100 años");
+                valid = false;
+            }
+
             if (!valid)
             {
                 return View("Nuevo",profileData);

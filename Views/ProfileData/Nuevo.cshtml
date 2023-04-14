@@ -28,6 +28,11 @@
                 @Html.ValidationMessageFor(x => x.DNI)
             </div>
             <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                @Html.ValidationMessageFor(x => x.Age)
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         }
