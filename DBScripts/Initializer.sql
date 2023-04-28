@@ -10,36 +10,14 @@ create table ProfileData
 		Email varchar(200) ,
 		DNI varchar(200),
 		UserAddress varchar(200),
-		IsMainProfile bit
+		IsMainProfile bit,
+		Age int
 	)
 GO
 
 
 
 --STORED PROCEDURES
-
--- =============================================
--- Author:		Itrejo002
--- Create date: 10-3-2023
--- Description:	Insert data 
--- =============================================
-CREATE PROCEDURE ProfileDataSave
-	(
-        @DependentId int,
-        @UserName varchar(100),
-        @Email varchar(100),
-        @DNI varchar(100),
-        @UserAddress varchar(100),
-        @IsMainProfile bit
-	)
-AS
-BEGIN
-	
-	INSERT INTO ProfileData VALUES ( @DependentId , @UserName , @Email , @DNI , @UserAddress , @IsMainProfile )
-	
-END
-GO
-
 
 -- =============================================
 -- Author:		itrejo002
@@ -79,34 +57,6 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[ProfileDataSave]    Script Date: 31/3/2023 19:48:32 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
--- Author:		Itrejo002
--- Create date: 10-3-2023
--- Description:	Update a Profile data entry
--- =============================================
-ALTER PROCEDURE [dbo].[ProfileDataUpdate]
-	(
-		@UserId int,
-        @DependentId int,
-        @UserName varchar(100),
-        @Email varchar(100),
-        @DNI varchar(100),
-        @UserAddress varchar(100),
-        @IsMainProfile bit
-	)
-AS
-BEGIN
-	
-	UPDATE ProfileData SET DependentId = @DependentId , UserName = @UserName ,Email = @Email , dni = @DNI , UserAddress = @UserAddress , IsMainProfile = @IsMainProfile 
-	where Id = @UserId
-	
-END
-
 
 SET ANSI_NULLS ON
 GO
@@ -136,7 +86,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[ProfileDataSave]
+CREATE PROCEDURE [dbo].[ProfileDataSave]
 	(
         @DependentId int,
         @UserName varchar(100),
@@ -166,7 +116,7 @@ GO
 -- Create date: 10-3-2023
 -- Description:	Update a Profile data entry
 -- =============================================
-ALTER PROCEDURE [dbo].[ProfileDataUpdate]
+CREATE PROCEDURE [dbo].[ProfileDataUpdate]
 	(
 		@UserId int,
         @DependentId int,
@@ -184,3 +134,35 @@ BEGIN
 	where Id = @UserId
 	
 END
+
+USE [DBResumeCreator]
+GO
+
+/****** Object:  Table [dbo].[ProfileData]    Script Date: 26/4/2023 16:39:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Education](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[EducationLevelId] [int] NULL, /* Acá iría el id de referencia de la tabla nivel */
+	[Institution] [varchar](200) NOT NULL,
+	[FieldOfStudyId] [int] NULL,  /* Acá iría el id de la tabla de camoo de estudio, lo mas abarcativa posible (Ciencias exactas, humanidades,etc)  */
+	[StartDate] [date] NULL, 
+	[EndDate] [date] NULL,
+    [AttendingCheck] [bit] NULL,
+	[Description] [varchar] (1000) NULL,
+
+
+
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
