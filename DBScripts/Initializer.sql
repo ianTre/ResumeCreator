@@ -165,4 +165,84 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+USE [DBResumeCreator]
+GO
+
+/****** Object:  Table [dbo].[Education]    Script Date: 5/5/2023 15:49:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[EducationLevel](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EdLevelItem] [varchar] (200) NULL,
+	
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Secundario')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Terciario')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Licenciatura')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Universitario')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Posgrado')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Doctorado')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('Otro')
+INSERT INTO EducationLevel (EdLevelItem) VALUES ('No Especificado')
+
+USE [DBResumeCreator]
+GO
+
+/****** Object:  Table [dbo].[Education]    Script Date: 5/5/2023 15:49:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[FieldOfStudy](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FieldItem] [varchar] (200) NULL,
+	
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Administración')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Arte')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Ciencias Exactas')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Ciencias Naturales')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Ciencias Políticas')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Ciencias Sociales')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Defensa Civil y Seguridad')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Economía y Gestión')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Educación')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Humanidades')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Idiomas')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Ingeniería')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Logística')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Medicina')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Profesión')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Religión')
+INSERT INTO FieldOfStudy (FieldItem) VALUES ('Tecnología e Informática')
+
+
+
+
+
+
+
+
+
+
+
 
