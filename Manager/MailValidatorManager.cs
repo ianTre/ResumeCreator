@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ComprobadorDeMail
+namespace ComprobadorDeMails
 {
     // en esta clase declaro todas las variables y métodos que voy a usar
-    class CompDeMail
+    public class CompDeMail
     {
         public string mailIngresado;     // var q  guarda el string ingresado
         public bool esMail;   // var que devuelve el booleano final
