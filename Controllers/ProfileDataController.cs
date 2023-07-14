@@ -22,7 +22,6 @@ namespace ResumeCreator.Controllers
         }
 
         [HttpGet]
-        [Route("/")]
         [Route("List")] //TODO : add UserId from the user logged . We should NOT see all the user , only the logged account and the secondary accounts created by them. 
         public IActionResult ProfileDataList()
         {
