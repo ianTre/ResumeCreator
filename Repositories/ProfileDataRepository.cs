@@ -25,7 +25,7 @@ namespace ResumeCreator.Repositories
                 //TODO check for null data incoming from DB
                 ProfileData dataItem = new ProfileData();
                 dataItem.Id = Convert.ToInt32(reader.GetValue(0).ToString());
-                dataItem.DependentId  = Convert.ToInt32(reader.GetValue(1));
+                dataItem.UserId  = Convert.ToInt32(reader.GetValue(1));
                 dataItem.UserName = Convert.ToString(reader.GetValue(2));
                 dataItem.Email = Convert.ToString(reader.GetValue(3));
                 dataItem.DNI = Convert.ToString(reader.GetValue(4));
@@ -63,7 +63,7 @@ namespace ResumeCreator.Repositories
                 //TODO check for null data incoming from DB
                 
                 dataItem.Id = Convert.ToInt32(reader.GetValue(0).ToString());
-                dataItem.DependentId = Convert.ToInt32(reader.GetValue(1));
+                dataItem.UserId = Convert.ToInt32(reader.GetValue(1));
                 dataItem.UserName = Convert.ToString(reader.GetValue(2));
                 dataItem.Email = Convert.ToString(reader.GetValue(3));
                 dataItem.DNI = Convert.ToString(reader.GetValue(4));
@@ -87,7 +87,7 @@ namespace ResumeCreator.Repositories
             SqlCommand command = new SqlCommand("dbo.ProfileDataSave",connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.Add("@DependentId", SqlDbType.Int).Value = entry.DependentId;
+            command.Parameters.Add("@DependentId", SqlDbType.Int).Value = entry.UserId;
             command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = entry.UserName == null ? DBNull.Value : entry.UserName ;
             command.Parameters.Add("@Email", SqlDbType.VarChar).Value = entry.Email == null ? DBNull.Value : entry.Email;
             command.Parameters.Add("@DNI", SqlDbType.VarChar).Value = entry.DNI == null ? DBNull.Value : entry.DNI;
@@ -107,7 +107,7 @@ namespace ResumeCreator.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
             command.Parameters.Add("@UserId", SqlDbType.Int).Value = entry.Id;
-            command.Parameters.Add("@DependentId", SqlDbType.Int).Value = entry.DependentId;
+            command.Parameters.Add("@DependentId", SqlDbType.Int).Value = entry.UserId;
             command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = entry.UserName == null ? DBNull.Value : entry.UserName;
             command.Parameters.Add("@Email", SqlDbType.VarChar).Value = entry.Email == null ? DBNull.Value : entry.Email;
             command.Parameters.Add("@DNI", SqlDbType.VarChar).Value = entry.DNI == null ? DBNull.Value : entry.DNI;
