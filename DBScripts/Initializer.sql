@@ -135,6 +135,8 @@ BEGIN
 	
 END
 
+GO
+
 USE [DBResumeCreator]
 GO
 
@@ -234,6 +236,53 @@ INSERT INTO FieldOfStudy (FieldItem) VALUES ('Medicina')
 INSERT INTO FieldOfStudy (FieldItem) VALUES ('Profesión')
 INSERT INTO FieldOfStudy (FieldItem) VALUES ('Religión')
 INSERT INTO FieldOfStudy (FieldItem) VALUES ('Tecnología e Informática')
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[User](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [varchar](200) NULL,
+	[Email] [varchar](200) NULL,
+	[DNI] [varchar](200) NULL,
+	[UserAddress] [varchar](200) NULL,
+	[Age] [int] NULL,
+	[Password] [varchar](200) NULL,
+	
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[UserSave]
+	(
+        @Id int OUTPUT,
+        @UserName varchar(100),
+        @Email varchar(100),
+        @DNI varchar(100),
+        @UserAddress varchar(100),
+        @Age int,
+		@Password varchar(100)
+	)
+AS
+BEGIN
+	
+	INSERT INTO [User] (UserName, Email, DNI, UserAddress, Age, [Password] )VALUES (@UserName , @Email , @DNI , @UserAddress , @Age , @Password)
+	 SET @Id=SCOPE_IDENTITY()
+	 RETURN @Id
+END
+
+GO
+
 
 
 
