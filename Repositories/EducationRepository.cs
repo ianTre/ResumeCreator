@@ -1,4 +1,6 @@
 ﻿using ResumeCreator.Models;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -23,7 +25,7 @@ namespace ResumeCreator.Repositories
             var reader = command.ExecuteReader();
             bool isStillData = reader.Read();
             while (isStillData == true) 
-            { Education education = new Education();
+            { Education education = new Education(1);
       
 
                 education.Id = Convert.ToInt32(reader.GetValue(0).ToString());
