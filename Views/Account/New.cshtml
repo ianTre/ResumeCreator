@@ -1,0 +1,55 @@
+﻿@model ResumeCreator.Models.User
+
+@{
+    ViewData["Title"] = "New";
+}
+ <form asp-action="New" asp-controller="Account"> @*Esta es la ruta de la forma; metodo y controlador*@
+
+   <h1>New</h1>
+
+    <div class="form-group">
+       <label for="UserName"> Ingresar Nombre de Usuario </label>
+       <input type="text" name="UserName" value="@Model.UserName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email"> Ingresar Dirección de Mail</label>
+        <input type="text" name="Email" value="@Model.Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="DNI"> Ingresar Número de DNI</label>
+        <input type="text" name="DNI" value="@Model.DNI" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="UserAddress"> Ingresar Dirección</label>
+        <input type="text" name="UserAddress" value="@Model.UserAddress" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Age"> Ingresar Edad</label>
+        <input type="text" name="Age" value="@Model.Age" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Password"> Ingresar Contraseña</label>
+        <input type="text" name="Password" value="@Model.Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label > Repetir Contraseña</label>
+        <input type="text" name="Repetir_Contraseña"  class="form-control" />
+    </div>
+
+         <!--   
+        agregar un imput para repetir la contraseña
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string DNI { get; set; }
+        public string UserAddress { get; set; }
+        public int Age { get; set; }
+        public string Password { get; set; }
+        -->
+        <input type="submit" value="Finalizar"/> @*Los forms cierran con un btn submit(obligatorio)*@
+
+</form>
